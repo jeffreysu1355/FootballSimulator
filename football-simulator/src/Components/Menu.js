@@ -11,10 +11,62 @@ class Menu extends Component{
             screen: 0
         };
     }
+
+    clickedSubmit = () => {
+        this.setState({screen: 1});
+    }
+
     render(){
         let dis;
         if(this.state.screen === 0){
-            dis = <FileUpload/>
+            dis = (<div>
+           
+                <Row >
+                    <Col span={8}>
+                        <h1>Drop Save File Here:</h1>
+                    </Col>
+                    
+                </Row>
+                <Row >
+                    <Col span={12}>
+                        <Dropzone onDrop={acceptedFiles => console.log(acceptedFiles)}>
+                            {({getRootProps, getInputProps}) => (
+                                <section>
+                                <div {...getRootProps()}>
+                                    <input {...getInputProps()} />
+                                    <p>Drag 'n' drop some files here, or click to select files</p>
+                                </div>
+                                </section>
+                            )}
+                        </Dropzone>
+                    </Col>
+                </Row>
+    
+                <Row >
+                    <Col span={8}>
+                        <h1>Drop Roster File Here:</h1>
+                    </Col>
+                    
+                </Row>
+                
+                <Row >
+                    <Col span={12}>
+                        <Dropzone onDrop={acceptedFiles => console.log(acceptedFiles)}>
+                            {({getRootProps, getInputProps}) => (
+                                <section>
+                                <div {...getRootProps()}>
+                                    <input {...getInputProps()} />
+                                    <p>Drag 'n' drop some files here, or click to select files</p>
+                                </div>
+                                </section>
+                            )}
+                        </Dropzone>
+                    </Col>
+                </Row>
+                <Button type="primary" size="large" onClick={this.clickedSubmit}>Submit</Button>
+                
+            </div>
+            )
         }else{
             dis = <GameScreen/>
         }
@@ -23,6 +75,7 @@ class Menu extends Component{
                 {dis}
             </div>
         );
+        
     }
 }
 
